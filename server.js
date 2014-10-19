@@ -67,8 +67,8 @@ app.get('/user/cancel', pass.ensureAuthenticatedApi, user_routes.cancelUser);
 app.get('/logout', user_routes.logout);
 
 
-app.get('/domotics/home', domotics_routes.home);
-app.get('/domotics/turn/:plug/:status', domotics_routes.turn);
+app.get('/domotics/home', pass.ensureAuthenticatedApi, pass.ensureAdmin(), domotics_routes.home);
+app.get('/domotics/turn/:plug/:status', pass.ensureAuthenticatedApi, pass.ensureAdmin(), domotics_routes.turn);
 
 
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8000
